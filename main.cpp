@@ -41,6 +41,8 @@ int main()
         cout << item->get_ItemName() << " " << quantity << " " << item->get_price() << endl;
     }
     cout << "Toal Amount " << user->getCart()->Get_Total() << endl;
-
+    pig->Create_Order_Of_Cart(user, "Pickup_Order", "UPI");
+    vector<Order *> orders = pig->Get_Order(user);
+    pig->Pay_For_Order(user, orders[0], "Net_Banking", 55, 5555);
     return 0;
 }

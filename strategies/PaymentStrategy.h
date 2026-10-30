@@ -1,3 +1,5 @@
+#ifndef PaymentStrategy_H
+#define PaymentStrategy_H
 #include <bits/stdc++.h>
 using namespace std;
 class PaymentStrategy
@@ -24,3 +26,4 @@ public:
         status = true;
     }
 };
+#endif

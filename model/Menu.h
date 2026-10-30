@@ -1,3 +1,5 @@
+#ifndef MENU_H
+#define MENU_H
 #include <bits/stdc++.h>
 #include "./MenuItem.h"
 #include "./Restaurent.h"
@@ -35,3 +37,4 @@ public:
         }
     }
 };
+#endif

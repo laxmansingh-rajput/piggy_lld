@@ -1,3 +1,5 @@
+#ifndef RestaurentManager_H
+#define RestaurentManager_H
 #include <bits/stdc++.h>
 #include "../model/Restaurent.h"
 using namespace std;
@@ -38,3 +40,4 @@ public:
 };
 
 RestaurantManager *RestaurantManager::instance = nullptr;
+#endif

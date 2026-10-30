@@ -1,3 +1,5 @@
+#ifndef Card_H
+#define Card_H
 #include <bits/stdc++.h>
 #include "./MenuItem.h"
 using namespace std;
@@ -38,3 +40,4 @@ public:
     }
 };
 int Cart::nextId = 1;
+#endif

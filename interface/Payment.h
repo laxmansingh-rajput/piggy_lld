@@ -1,31 +1,78 @@
+#ifndef Payment_H
+#define Payment_H
+
 #include <bits/stdc++.h>
 #include "../strategies/PaymentStrategy.h"
-#include "../factory/PaymentFactory.h"
+#include "../factory/PayementStrategyFactory.h"
+
+using namespace std;
 
 class Payment
 {
-public:
     bool status = false;
     float amount;
+    string strategy;
     PaymentStrategy *s = nullptr;
 
-    Payment(float amount, string strategy)
+public:
+    Payment(float amount, string strategy, PaymentStrategy *s)
     {
         this->amount = amount;
-        Change_startegy(strategy);
+        this->s = s;
+        this->strategy = strategy;
+        Change_strategy(strategy);
     }
 
-    void Pay(int id, int password, bool &status)
+    // Getters
+    bool get_status() const
+    {
+        return status;
+    }
+    string Get_Payment_Type() const
+    {
+        return strategy;
+    }
+
+    float get_amount() const
+    {
+        return amount;
+    }
+
+    PaymentStrategy *get_strategy() const
+    {
+        return s;
+    }
+
+    // Setters
+    void set_status(bool status)
+    {
+        this->status = status;
+    }
+
+    void set_amount(float amount)
+    {
+        this->amount = amount;
+    }
+
+    void set_strategy(PaymentStrategy *s)
+    {
+        this->s = s;
+    }
+
+    void Pay(int id, int password)
     {
         s->pay(amount, id, password, status);
+        this->status = status;
     }
 
-    void Change_startegy(string payment_type)
+    void Change_strategy(string payment_type)
     {
         Payment_strategy_factory *p = new Payment_strategy_factory();
-        if (s)
-            delete s;
-        s = p->create_payment_stragtegy(payment_type);
+        this->strategy = payment_type;
+
+        s = p->create_payment_strategy(payment_type);
+
         delete p;
     }
 };
+#endif

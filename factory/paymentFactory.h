@@ -1,18 +1,25 @@
+#ifndef PaymentFactory_H
+#define PaymentFactory_H
+
 #include <bits/stdc++.h>
 #include "../strategies/PaymentStrategy.h"
+#include "./PayementStrategyFactory.h"
 
-class Payment_strategy_factory
+#include "../interface/Payment.h"
+
+class PaymentFactory
 {
+    Payment_strategy_factory *strategy_factory;
+
 public:
-    PaymentStrategy *create_payment_stragtegy(string s)
+    PaymentFactory()
     {
-        if (s == "UPI")
-        {
-            return new UPI();
-        }
-        else
-        {
-            return new Net_Banking();
-        }
+        strategy_factory = new Payment_strategy_factory();
+    }
+    Payment *Create_Payment(float amount, string type)
+    {
+        PaymentStrategy *strategy = strategy_factory->create_payment_strategy(type);
+        return new Payment(amount, type, strategy);
     }
 };
+#endif

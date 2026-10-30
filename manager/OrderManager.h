@@ -1,3 +1,5 @@
+#ifndef OrderManager_H
+#define OrderManager_H
 #include <bits/stdc++.h>
 #include "../model/Order.h"
 #include "../model/Restaurent.h"
@@ -9,7 +11,7 @@ class OrderManager
     static OrderManager *order_manager_instance;
     vector<Order *> orders;
     unordered_map<User *, vector<Order *>> user_orders;
-    unordered_map<Restaruret *, vector<Order *>> restarurent_orders;
+    unordered_map<Restaurant *, vector<Order *>> restaurent_orders;
 
     OrderManager()
     {
@@ -17,7 +19,7 @@ class OrderManager
     }
 
 public:
-    OrderManager *create_order_manager()
+    static OrderManager *create_order_manager()
     {
         if (!order_manager_instance)
         {
@@ -25,14 +27,27 @@ public:
         }
         return order_manager_instance;
     }
-    void get_user_order(User *user)
+
+    void Add_User_Order(User *user, Order *order)
     {
-        return user_order[user];
+        user_orders[user].push_back(order);
     }
-    void get_user_order(Restaurent *restarurent)
+
+    void Add_User_Restaurant(Restaurant *restaurent, Order *order)
     {
-        return restarurent_order[restarurent];
+        restaurent_orders[restaurent].push_back(order);
+    }
+
+    vector<Order *> get_user_orders(User *user)
+    {
+        return user_orders[user];
+    }
+
+    vector<Order *> get_restaurant_orders(Restaurant *restaurant)
+    {
+        return restaurent_orders[restaurant];
     }
 };
 
 OrderManager *OrderManager::order_manager_instance = nullptr;
+#endif
