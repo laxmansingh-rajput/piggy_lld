@@ -1,19 +1,25 @@
 #include <bits/stdc++.h>
 #include "../model/Order.h"
+#include "../model/MenuItem.h"
+#include "../interface/Payment.h"
 
 class OrderFactory
 {
+    static int object_created;
+
 public:
-    static int object_created = 0;
-    Order *CreateOrder(string s, float Amount, vector<int> items, Payment *p)
+    Order *CreateOrder(string s, float Amount, vector<MenuItem *> items, Payment *p)
     {
         if (s == "Delivery")
         {
-            return new Delivery_Order(Amount, items, ++objectCreated, Payment * p);
+            // int order_id, float Amount, vector<MenuItem *> items, Payment *p;
+            return new Delivery_Order(++object_created, Amount, items, p);
         }
         else
         {
-            return new Pickup_Order(Amount, items, ++objectCreated, Payment * p);
+            return new Pickup_Order(++object_created, Amount, items, p);
         }
     }
 };
+
+int OrderFactory::object_created = 0;

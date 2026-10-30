@@ -11,8 +11,9 @@ public:
     float Amount;
     vector<MenuItem *> items;
     Payment *p;
-    Order(int order_id, float Amount, vector<int> items, , Payment *p)
+    Order(int order_id, float Amount, vector<MenuItem *> items, Payment *p)
     {
+        this->items = items;
         this->order_id = order_id;
         this->Amount = Amount;
         this->p = p;
@@ -20,28 +21,28 @@ public:
     virtual void Initiate_Order_Lifecycle() = 0;
 };
 
-class Delivery_Order : pulic Order
+class Delivery_Order : public Order
 {
-    Delivery_Order(int order_id, float Amount, vector<int> items, , Payment *p)
+public:
+    Delivery_Order(int order_id, float Amount,
+                   vector<MenuItem *> items, Payment *p)
+        : Order(order_id, Amount, items, p)
     {
-        this->order_id = order_id;
-        this->Amount = Amount;
-        this->p = p;
     }
-    void virtual void Initiate_Order_Lifecycle() overide
+    void Initiate_Order_Lifecycle() override
     {
     }
 };
 
-class Pickup_order : public Order
+class Pickup_Order : public Order
 {
-    Pickup_Order(int order_id, float Amount, vector<int> items, , Payment *p)
+public:
+    Pickup_Order(int order_id, float Amount,
+                 vector<MenuItem *> items, Payment *p)
+        : Order(order_id, Amount, items, p)
     {
-        this->order_id = order_id;
-        this->Amount = Amount;
-        this->p = p;
     }
-    void virtual void Initiate_Order_Lifecycle() overide
+    void Initiate_Order_Lifecycle() override
     {
     }
 };

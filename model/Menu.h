@@ -8,27 +8,30 @@ class Menu
 {
 public:
     vector<MenuItem *> RestaurentMenu;
-    void Get_Items()
+    vector<MenuItem *> Get_Items()
     {
-        return RestaurentMenue;
+        return RestaurentMenu;
     }
-    void Add_Item(int name, float price, int restaurant_id)
+    void Add_Item(string name, float price, int restaurant_id)
     {
         int item_id = RestaurentMenu.size() + 1;
         MenuItem *item = new MenuItem(item_id, name, price, restaurant_id);
-        RestaurentMenu.push_back(m);
+        RestaurentMenu.push_back(item);
     }
-    void Remove_Item(int id)
+    void Remove_Item(int item_id)
     {
         MenuItem *item = nullptr;
         for (auto i : RestaurentMenu)
         {
-            if (i->item_id == item_id)
+            if (i->get_item_id() == item_id)
             {
                 item = i;
             }
         }
         if (item != nullptr)
-            RestaurentMenu.erase(item);
+        {
+            auto it = find(RestaurentMenu.begin(), RestaurentMenu.end(), item);
+            RestaurentMenu.erase(it);
+        }
     }
 };

@@ -5,7 +5,7 @@
 #include <bits/stdc++.h>
 #include "./Menu.h"
 
-    using namespace std;
+using namespace std;
 
 class Restaurant
 {
@@ -25,7 +25,10 @@ public:
           menu(new Menu())
     {
     }
-
+    Menu *get_menu()
+    {
+        return menu;
+    }
     // Getters
     int get_restaurant_id() const
     {
@@ -54,7 +57,7 @@ public:
     }
 
     // Menu operations
-    void Add_Item(int name, float price)
+    void Add_Item(string name, float price)
     {
         menu->Add_Item(name, price, restaurant_id);
     }

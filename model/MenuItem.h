@@ -1,3 +1,5 @@
+#ifndef MENUITEM_H
+#define MENUITEM_H
 #include <bits/stdc++.h>
 #include "./Restaurent.h"
 #include "../enum.h"
@@ -9,7 +11,7 @@ class MenuItem
     int item_id;
     float price;
     int restarurent_id;
-    Item_With current_handeler = RESTAURANT;
+    Item_With current_handeler = Item_With::RESTAURANT;
 
 public:
     MenuItem(int item_id, string ItemName, float price, int restarurent_id)
@@ -68,3 +70,4 @@ public:
         current_handeler = handler;
     }
 };
+#endif
